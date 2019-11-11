@@ -11,17 +11,17 @@ Globals:
     Timeout: 3
 
 Resources:
-  HelloWorldFunction:
+  CodeDeploySlackFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       CodeUri: codedeploy-slack/
       Handler: app.lambdaHandler
       Runtime: nodejs10.x
       Events:
-        HelloWorld:
+        CodeDeploySlack:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /hello
+            Path: /notify
             Method: get
 
 Outputs:
@@ -29,11 +29,11 @@ Outputs:
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
   HelloWorldApi:
-    Description: "API Gateway endpoint URL for Prod stage for Hello World function"
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/hello/"
-  HelloWorldFunction:
-    Description: "Hello World Lambda Function ARN"
-    Value: !GetAtt HelloWorldFunction.Arn
-  HelloWorldFunctionIamRole:
-    Description: "Implicit IAM Role created for Hello World function"
-    Value: !GetAtt HelloWorldFunctionRole.Arn
+    Description: "API Gateway endpoint URL for Prod stage for CodeDeploy Slack function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/notify/"
+  CodeDeploySlackFunction:
+    Description: "CodeDeploy Slack Lambda Function ARN"
+    Value: !GetAtt CodeDeploySlackFunction.Arn
+  CodeDeploySlackFunctionIamRole:
+    Description: "Implicit IAM Role created for CodeDeploy Slack function"
+    Value: !GetAtt CodeDeploySlackFunctionRole.Arn
