@@ -1,7 +1,7 @@
-const { WebClient } = require("@slack/web-api");
+import { WebClient } from "@slack/web-api";
 
 const token = process.env.SLACK_TOKEN;
-const debug_channel = process.env.SLACK_DEBUG_CHANNEL;
+const debug_channel = process.env.SLACK_DEBUG_CHANNEL ?? "debug-channel";
 
 const web = new WebClient(token);
 
@@ -14,10 +14,10 @@ const web = new WebClient(token);
  * @returns {Object} object - API Gateway Lambda Proxy Output Format
  *
  */
-exports.lambdaHandler = async event => {
+export const lambdaHandler = async (event:any) => {
   try {
     let text = null;
-    (event.Records || []).forEach(rec => {
+    (event.Records || []).forEach((rec:any) => {
       if (rec.Sns) {
         const message = JSON.parse(rec.Sns.Message);
         text = `*Application:${message.applicationName} deploymentGroupName: ${message.deploymentGroupName} deploymentId: ${message.deploymentId}* ${message.deploymentId}`;

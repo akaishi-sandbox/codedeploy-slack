@@ -7,14 +7,16 @@
   "author": "SAM CLI",
   "license": "MIT",
   "dependencies": {
-    "@slack/web-api": "^5.4.0",
-    "axios": "^0.18.0"
+    "@slack/web-api": "^7.10.0",
+    "axios": "^1.12.2"
   },
   "scripts": {
     "test": "mocha tests/unit/"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "mocha": "^6.1.4"
+    "@types/node": "^24.5.0",
+    "chai": "^6.0.1",
+    "mocha": "^11.7.2",
+    "typescript": "^5.9.2"
   }
 }
